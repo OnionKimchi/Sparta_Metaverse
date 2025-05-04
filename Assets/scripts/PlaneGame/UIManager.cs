@@ -39,6 +39,21 @@ public class UIManager : MonoBehaviour
         returnToMainButton.SetActive(false);
     }
 
+    private void Update()
+    {
+        // Restart 버튼이 활성화된 상태에서 Z 키 입력 처리
+        if (restartButton != null && restartButton.activeSelf && Input.GetKeyDown(KeyCode.Z))
+        {
+            OnRestartButtonClicked();
+        }
+
+        // Return to Main 버튼이 활성화된 상태에서 X 키 입력 처리
+        if (returnToMainButton != null && returnToMainButton.activeSelf && Input.GetKeyDown(KeyCode.X))
+        {
+            OnReturnToMainButtonClicked();
+        }
+    }
+
     public void SetRestart()
     {
         restartButton.SetActive(true);

@@ -52,8 +52,8 @@ public class MiniGamePlayer : MonoBehaviour
             return;
         }
 
-        // 입력 처리: 마우스 클릭 또는 스페이스바 입력
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        // 입력 처리: 마우스 클릭 또는 z 입력
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Z))
         {
             isFlap = true; // Flap 동작 활성화
         }

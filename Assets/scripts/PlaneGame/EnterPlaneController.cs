@@ -20,6 +20,22 @@ public class EnterPlaneController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // 팝업 캔버스가 활성화된 동안 키 입력 처리
+        if (popupCanvas != null && popupCanvas.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Z)) // Z 키 입력
+            {
+                StartMiniGame();
+            }
+            else if (Input.GetKeyDown(KeyCode.X)) // X 키 입력
+            {
+                ClosePopup();
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) // 플레이어와 충돌 확인
@@ -49,7 +65,6 @@ public class EnterPlaneController : MonoBehaviour
         if (baseController != null)
         {
             baseController.canMove = false; // 플레이어 이동 비활성화
-            Debug.Log("Player cannot move.");
         }
     }
 
@@ -70,7 +85,6 @@ public class EnterPlaneController : MonoBehaviour
         if (baseController != null)
         {
             baseController.canMove = true; // 플레이어 이동 활성화
-            Debug.Log("Player can move again.");
         }
     }
 }
