@@ -15,8 +15,7 @@ public class PlayerController : BaseController
     protected override void HandleAction()
     {
         
-        if (canMove == true)
-        {
+        
             // 키보드 입력을 기준으로 이동 방향 설정
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
@@ -24,6 +23,6 @@ public class PlayerController : BaseController
 
             // 디버깅 메시지로 이동 방향 확인
             Debug.Log($"HandleAction: Updated movementDirection to {movementDirection}");
-        }
+       
     }
 }

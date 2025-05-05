@@ -20,7 +20,6 @@ public class BaseController : MonoBehaviour
     protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
     public float rotZ { get; private set; } // 외부에서 읽기만 가능하도록 설정
-    public bool canMove { get; set; } = true; // 이동 가능 여부 플래그
 
     protected virtual void Awake()
     {
@@ -36,6 +35,7 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (Time.timeScale == 0) return; // 게임이 멈춘 상태에서는 Update 중단
         HandleAction();
         // 속도가 0이 아닐 때만 방향을 기록
         if (_rigidbody.velocity != Vector2.zero)
@@ -48,6 +48,7 @@ public class BaseController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (Time.timeScale == 0) return;
         Movment(movementDirection);
         if (knockbackDuration > 0.0f)
         {
@@ -62,13 +63,7 @@ public class BaseController : MonoBehaviour
 
     private void Movment(Vector2 direction)
     {
-        if (!canMove) // canMove가 false일 경우 이동 로직 중단
-        {
-            Debug.Log("BaseController: Movement is disabled.");
-            _rigidbody.velocity = Vector2.zero; // 이동 중단
-            animationHandler.Move(Vector2.zero); // 애니메이션도 정지
-            return;
-        }
+        
             direction = direction * 5;
         // 넉백 처리
         if (knockbackDuration > 0.0f)

@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 205668804}
   - component: {fileID: 205668806}
   - component: {fileID: 205668805}
+  - component: {fileID: 205668807}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -510,6 +511,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205668803}
   m_CullTransparentMesh: 1
+--- !u!114 &205668807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205668803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec00556a1193464c8a00d90d5ffa4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: 0
+  dialogueText: {fileID: 205668805}
 --- !u!1 &226774751
 GameObject:
   m_ObjectHideFlags: 0
@@ -8433,7 +8448,7 @@ GameObject:
   - component: {fileID: 989649074}
   - component: {fileID: 989649073}
   m_Layer: 0
-  m_Name: ImpNPC (1)
+  m_Name: NPC_imp2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8779,7 +8794,7 @@ GameObject:
   - component: {fileID: 1118726801}
   - component: {fileID: 1118726803}
   m_Layer: 0
-  m_Name: ImpNPC
+  m_Name: NPC_imp1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11324,7 +11339,7 @@ GameObject:
   - component: {fileID: 1519679847}
   - component: {fileID: 1519679846}
   m_Layer: 0
-  m_Name: lizardNPC (1)
+  m_Name: NPC_lizard2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23377,7 +23392,7 @@ GameObject:
   - component: {fileID: 2062466202}
   - component: {fileID: 2062466201}
   m_Layer: 0
-  m_Name: lizardNPC
+  m_Name: NPC_lizard1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

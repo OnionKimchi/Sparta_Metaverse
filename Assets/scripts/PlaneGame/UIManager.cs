@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement; // SceneManager를 사용하기 위해 추가
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; } // Singleton Instance
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
     public GameObject restartButton; // Restart 버튼
@@ -37,6 +39,19 @@ public class UIManager : MonoBehaviour
 
         restartButton.SetActive(false);
         returnToMainButton.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        if (restartButton != null)
+        {
+            restartButton.SetActive(false);
+        }
+
+        if (returnToMainButton != null)
+        {
+            returnToMainButton.SetActive(false);
+        }
     }
 
     private void Update()
@@ -70,14 +85,20 @@ public class UIManager : MonoBehaviour
     // Restart 버튼 클릭 시 호출
     public void OnRestartButtonClicked()
     {
-        Debug.Log("Restarting game...");
+        restartButton.SetActive(false);
+        returnToMainButton.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 현재 씬 다시 로드
+        restartButton.SetActive(false);
+        returnToMainButton.SetActive(false);
     }
 
     // Return to Main Scene 버튼 클릭 시 호출
     public void OnReturnToMainButtonClicked()
     {
-            Debug.Log("Returning to Main Scene...");
-            SceneManager.LoadScene("MainScene"); // MainScene으로 이동
+        restartButton.SetActive(false);
+        returnToMainButton.SetActive(false);
+        SceneManager.LoadScene("MainScene"); // MainScene으로 이동
+        restartButton.SetActive(false);
+        returnToMainButton.SetActive(false);
     }
 }

@@ -61,10 +61,9 @@ public class EnterPlaneController : MonoBehaviour
         if (popupCanvas != null)
         {
             popupCanvas.SetActive(true); // 팝업 UI 활성화
-        }
-        if (baseController != null)
-        {
-            baseController.canMove = false; // 플레이어 이동 비활성화
+
+            // 게임 멈춤
+            Time.timeScale = 0;
         }
     }
 
@@ -81,10 +80,9 @@ public class EnterPlaneController : MonoBehaviour
         if (popupCanvas != null)
         {
             popupCanvas.SetActive(false); // 팝업 UI 비활성화
-        }
-        if (baseController != null)
-        {
-            baseController.canMove = true; // 플레이어 이동 활성화
+            
+        // 게임 재개
+        Time.timeScale = 1;
         }
     }
 }
