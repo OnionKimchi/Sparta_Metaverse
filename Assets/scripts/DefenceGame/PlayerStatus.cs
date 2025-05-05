@@ -28,7 +28,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
     [Header("Weapon Stats")]
-    [SerializeField] private WeaponType weaponType = WeaponType.Sword;
+    [SerializeField] private WeaponType weaponType = WeaponType.None;
     public WeaponType CurrentWeaponType
     {
         get => weaponType;

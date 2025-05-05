@@ -53,6 +53,5 @@ public class MiniGameManager : MonoBehaviour
         {
             uiManager.UpdateScore(currentScore);
         }
-        Debug.Log("Score: " + currentScore);
     }
 }

@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement; // 씬 전환을 위해 필요
 
-public class EnterPlaneController : MonoBehaviour
+public class EnterDefenceController : MonoBehaviour
 {
     [SerializeField] private GameObject popupCanvas; // 팝업 UI 캔버스
-    [SerializeField] private string miniGameSceneName = "MiniGameScene"; // 미니게임 씬 이름
-    [SerializeField] private Vector3 targetPosition = new Vector3(16.5f, 4f, 0); // 플레이어 이동 좌표
+    [SerializeField] private Vector3 targetPosition1 = new Vector3(5f, 16.5f, 0f); // 대기 위치
+    [SerializeField] private Vector3 targetPosition2 = new Vector3(79.5f, 3.5f, 0f); // 디펜스 던전 위치
 
     private GameObject player; // 플레이어 오브젝트 참조
 
@@ -13,11 +12,8 @@ public class EnterPlaneController : MonoBehaviour
     {
         // 플레이어 오브젝트를 태그로 찾습니다.
         player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
-        {
-            Debug.LogError("EnterPlaneController: Player object not found! Make sure the Player has the 'Player' tag.");
-        }
     }
+
 
     private void Update()
     {
@@ -26,11 +22,11 @@ public class EnterPlaneController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z)) // Z 키 입력
             {
-                StartMiniGame();
+                MovePlayerToTarget2(); // 디펜스 던전 위치로 이동
             }
             else if (Input.GetKeyDown(KeyCode.X)) // X 키 입력
             {
-                ClosePopup();
+                ClosePopup(); // 팝업 닫기
             }
         }
     }
@@ -39,18 +35,30 @@ public class EnterPlaneController : MonoBehaviour
     {
         if (collision.CompareTag("Player")) // 플레이어와 충돌 확인
         {
-            MovePlayerToTarget(); // 플레이어를 지정된 좌표로 이동
+            Debug.Log("Player entered the trigger zone.");
+            MovePlayerToTarget1(); // 대기 위치로 이동
             ShowPopup(); // 팝업 UI 활성화
         }
     }
 
-    // 플레이어를 지정된 좌표로 이동
-    private void MovePlayerToTarget()
+    // 플레이어를 대기 위치로 이동
+    private void MovePlayerToTarget1()
     {
         if (player != null)
         {
-            player.transform.position = targetPosition; // 플레이어 위치 이동
+            player.transform.position = targetPosition1; // 플레이어 위치 이동
         }
+    }
+
+    // 플레이어를 디펜스 던전 위치로 이동
+    public void MovePlayerToTarget2()
+    {
+        if (player != null)
+        {
+            player.transform.position = targetPosition2; // 플레이어 위치 이동
+        }
+
+        ClosePopup(); // 팝업 닫기
     }
 
     // 팝업 UI를 활성화
@@ -59,28 +67,23 @@ public class EnterPlaneController : MonoBehaviour
         if (popupCanvas != null)
         {
             popupCanvas.SetActive(true); // 팝업 UI 활성화
-
-            // 게임 멈춤
-            Time.timeScale = 0;
+            Time.timeScale = 0; // 게임 멈춤
         }
     }
 
-    // 미니게임 씬으로 전환하는 버튼 이벤트
-    public void StartMiniGame()
-    {
-        ClosePopup(); // 팝업 UI를 닫음
-        SceneManager.LoadScene(miniGameSceneName); // 미니게임 씬으로 전환
-    }
-
-    // 팝업창을 닫는 버튼 이벤트
+    // 팝업창을 닫는 메서드
     public void ClosePopup()
     {
         if (popupCanvas != null)
         {
             popupCanvas.SetActive(false); // 팝업 UI 비활성화
-            
-        // 게임 재개
-        Time.timeScale = 1;
+            Time.timeScale = 1; // 게임 재개
         }
+    }
+
+    // 버튼 클릭 시 호출되는 메서드
+    public void OnStartDefenceGameButtonClicked()
+    {
+        MovePlayerToTarget2(); // 디펜스 던전 위치로 이동
     }
 }

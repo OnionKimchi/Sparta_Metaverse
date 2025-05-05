@@ -20,9 +20,6 @@ public class PlayerController : BaseController
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
             movementDirection = new Vector2(horizontal, vertical).normalized;
-
-            // 디버깅 메시지로 이동 방향 확인
-            Debug.Log($"HandleAction: Updated movementDirection to {movementDirection}");
        
     }
 }

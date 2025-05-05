@@ -29,7 +29,6 @@ public class NPCDialogueController : MonoBehaviour
             case NPCName.Lizard1:
                 int highScore = MiniGameManager.Instance != null ? MiniGameManager.Instance.highScore : -1;
                 dialogueText.text = $"Your highscore is {highScore}!";
-                Debug.Log($"Lizard1: Your highscore is {highScore}!");
                 break;
 
             default:

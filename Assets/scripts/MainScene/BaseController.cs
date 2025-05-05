@@ -82,7 +82,6 @@ public class BaseController : MonoBehaviour
 
         if (velocity == Vector2.zero)
         {
-            Debug.Log("BaseController: Velocity is zero, cannot calculate rotZ.");
             return;
         }
 
