@@ -2,6 +2,8 @@
 
 public class EnterDefenceController : MonoBehaviour
 {
+    public static EnterDefenceController Instance { get; private set; } // 싱글턴 인스턴스
+
     [SerializeField] private GameObject popupCanvas; // 팝업 UI 캔버스
     [SerializeField] private Vector3 targetPosition1 = new Vector3(5f, 16.5f, 0f); // 대기 위치
     [SerializeField] private Vector3 targetPosition2 = new Vector3(79.5f, 3.5f, 0f); // 디펜스 던전 위치
@@ -85,5 +87,10 @@ public class EnterDefenceController : MonoBehaviour
     public void OnStartDefenceGameButtonClicked()
     {
         MovePlayerToTarget2(); // 디펜스 던전 위치로 이동
+    }
+
+    public bool IsPopupActive()
+    {
+        return popupCanvas != null && popupCanvas.activeSelf;
     }
 }

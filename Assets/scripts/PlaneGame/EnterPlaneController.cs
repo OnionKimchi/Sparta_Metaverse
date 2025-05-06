@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement; // 씬 전환을 위해 필요
 
 public class EnterPlaneController : MonoBehaviour
 {
+    public static EnterPlaneController Instance { get; private set; } // 싱글턴 인스턴스
+
     [SerializeField] private GameObject popupCanvas; // 팝업 UI 캔버스
     [SerializeField] private string miniGameSceneName = "MiniGameScene"; // 미니게임 씬 이름
     [SerializeField] private Vector3 targetPosition = new Vector3(16.5f, 4f, 0); // 플레이어 이동 좌표
@@ -82,5 +84,10 @@ public class EnterPlaneController : MonoBehaviour
         // 게임 재개
         Time.timeScale = 1;
         }
+    }
+
+    public bool IsPopupActive()
+    {
+        return popupCanvas != null && popupCanvas.activeSelf;
     }
 }

@@ -101,4 +101,16 @@ public class UIManager : MonoBehaviour
         restartButton.SetActive(false);
         returnToMainButton.SetActive(false);
     }
+
+    public bool IsAnyUIActive()
+    {
+        return restartButton.activeSelf || returnToMainButton.activeSelf;
+    }
+
+    public void HideButtons()
+    {
+        if (restartButton != null) restartButton.SetActive(false);
+        if (returnToMainButton != null) returnToMainButton.SetActive(false);
+        Debug.Log("UI buttons have been hidden.");
+    }
 }

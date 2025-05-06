@@ -2,7 +2,20 @@
 
 public class PlayerStatus : MonoBehaviour
 {
-    
+    public static PlayerStatus Instance { get; private set; } // 싱글턴 인스턴스
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogError("Duplicate PlayerStatus instance detected. Destroying duplicate.");
+            Destroy(gameObject);
+        }
+    }
     public enum WeaponType
     {
         None,
@@ -24,7 +37,14 @@ public class PlayerStatus : MonoBehaviour
     public float Speed
     {
         get => speed;
-        set => speed = Mathf.Clamp(value, 0, 20);
+        set => speed = Mathf.Clamp(value, 5, 20);
+    }
+
+    [Range(1, 50)][SerializeField] private int attackPower = 10; // 플레이어 공격력
+    public int AttackPower
+    {
+        get => attackPower;
+        set => attackPower = Mathf.Clamp(value, 10, 50); // 공격력은 최소 10 이상
     }
 
     [Header("Weapon Stats")]
