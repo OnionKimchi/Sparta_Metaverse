@@ -203,6 +203,15 @@ public class DefenceGameManager : MonoBehaviour
         {
             isPlayerInTrigger = true; // 플레이어가 영역 내에 있음
         }
+        if (collision.CompareTag("Enemy"))
+        {
+            EnemyMovementController enemy = collision.GetComponent<EnemyMovementController>();
+            if (enemy != null && !enemiesInTrigger.Contains(enemy))
+            {
+                enemiesInTrigger.Add(enemy); // 적 추가
+                enemy.SetTarget(treasure); // 트레저를 목표로 설정
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -211,6 +220,14 @@ public class DefenceGameManager : MonoBehaviour
         {
             isPlayerInTrigger = false; // 플레이어가 영역을 벗어남
             ResetGameState(); // 게임 상태 초기화
+        }
+        if (collision.CompareTag("Enemy"))
+        {
+            EnemyMovementController enemy = collision.GetComponent<EnemyMovementController>();
+            if (enemy != null && enemiesInTrigger.Contains(enemy))
+            {
+                enemiesInTrigger.Remove(enemy); // 적 제거
+            }
         }
     }
 

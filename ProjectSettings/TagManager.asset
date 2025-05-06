@@ -7,6 +7,8 @@ TagManager:
   - BackGround
   - Ground
   - Weapon
+  - Enemy
+  - Treasure
   layers:
   - Default
   - TransparentFX
